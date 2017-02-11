@@ -1,0 +1,256 @@
+#include<iostream.h>
+#include<conio.h>
+#define MAX 50
+
+class student
+{
+protected:
+char name[20],dob[20],dept[5];
+long int rollno;
+int year;
+public:
+void getdata1()
+{
+cout<<"\nEnter the name:";
+cin>>name;
+cout<<"\nEnter DOB:";
+cin>>dob;
+cout<<"\nEnter Department Name:";
+cin>>dept;
+cout<<"\nEnter Roll No.:";
+cin>>rollno;
+cout<<"\nEnter Year:";
+cin>>year;
+}
+void display1()
+{
+clrscr();
+cout<<"\nName:"<<name;
+cout<<"\nDOB:"<<dob;
+cout<<"\nDept Name:"<<dept;
+cout<<"\nRoll No.:"<<rollno;
+cout<<"\nYear:"<<year;
+}
+};
+
+class internal:public student
+{
+protected:
+int inter[8];
+public:
+void getdata2()
+{
+cout<<"\nEnter the details of Internal Marks:";
+cout<<"\nEnter PDS-2 Mark:";
+cin>>inter[0];
+cout<<"\nEnter DBMS Mark:";
+cin>>inter[1];
+cout<<"\nEnter TPDE Mark:";
+cin>>inter[2];
+cout<<"\nEnter EVS Mark:";
+cin>>inter[3];
+cout<<"\nEnter ADC Mark:";
+cin>>inter[4];
+cout<<"\nEnter CA Mark:";
+cin>>inter[5];
+cout<<"\nEnter PDS-2 Lab Mark:";
+cin>>inter[6];
+cout<<"\nEnter DBMS Lab Mark:";
+cin>>inter[7];
+}
+void calculate2()
+{
+int i;
+for(i=0;i<8;i++)
+inter[i]=(inter[i]*20)/100;
+}
+void display2()
+{
+cout<<"\nInternal Marks are:";
+cout<<"\nPDS-2 :"<<inter[0];
+cout<<"\nDBMS :"<<inter[1];
+cout<<"\nTPDE :"<<inter[2];
+cout<<"\nEVS :"<<inter[3];
+cout<<"\nADC :"<<inter[4];
+cout<<"\nCA :"<<inter[5];
+cout<<"\nPDS-2 Lab :"<<inter[6];
+cout<<"\nDBMS Lab :"<<inter[7];
+}
+};
+class external:public internal
+{
+protected:
+int exter[8];
+public:
+void getdata3()
+{
+cout<<"\nEnter details of External Mark:";
+cout<<"\nEnter PDS-2:";
+cin>>exter[0];
+cout<<"\nEnter DBMS:";
+cin>>exter[1];
+cout<<"\nEnter TPDE:";
+cin>>exter[2];
+cout<<"\nEnter EVS:";
+cin>>exter[3];
+cout<<"\nEnter ADC:";
+cin>>exter[4];
+cout<<"\nEnter CA:";
+cin>>exter[5];
+cout<<"\nEnter PDS-2 Lab:";
+cin>>exter[6];
+cout<<"\nEnter DBMS Lab:";
+cin>>exter[7];
+}
+void calculate3()
+{
+int i;
+for(i=0;i<8;i++)
+exter[i]=(exter[i]*80)/100;
+}
+void display3()
+{
+cout<<"\nExternal Marks are:";
+cout<<"\nPDS-2 :"<<exter[0];
+cout<<"\nDBMS :"<<exter[1];
+cout<<"\nTPDE :"<<exter[2];
+cout<<"\nEVS :"<<exter[3];
+cout<<"\nADC :"<<exter[4];
+cout<<"\nCA :"<<exter[5];
+cout<<"\nPDS-2 Lab :"<<exter[6];
+cout<<"\nDBMS Lab :"<<exter[7];
+}
+};
+class result:public external
+{
+protected:
+char grade;
+int result[8];
+public:
+void calculate4()
+{
+int i;
+for(i=0;i<8;i++)
+result[i]=inter[i]+exter[i];
+}
+void display4()
+{
+int i;
+for(i=0;i<8;i++)
+{
+if(result[i]>90 && result[i]<=100)
+{
+grade='S';
+cout<<"\nSubject"<<i+1<<":\t"<<result[i];
+cout<<"\nGrade Obtained:"<<grade;
+}
+else if(result[i]>80 && result[i]<=90)
+{
+grade='A';
+cout<<"\nSubject"<<i+1<<":\t"<<result[i];
+cout<<"\nGrade Obtained:"<<grade;
+}
+else if(result[i]>70 && result[i]<=80)
+{
+grade='B';
+cout<<"\nSubject"<<i+1<<":\t"<<result[i];
+cout<<"\nGrade Obtained:"<<grade;
+}
+else if(result[i]>60 && result[i]<=70)
+{
+grade='C';
+cout<<"\nSubject"<<i+1<<":\t"<<result[i];
+cout<<"\nGrade Obtained:"<<grade;
+}
+else if(result[i]>50 && result[i]<=60)
+{
+grade='D';
+cout<<"\nSubject"<<i+1<<":\t"<<result[i];
+cout<<"\nGrade Obtained:"<<grade;
+}
+else if(result[i]>40 && result[i]<=50)
+{
+grade='E';
+cout<<"\nSubject"<<i+1<<":\t"<<result[i];
+cout<<"\nGrade Obtained:"<<grade;
+}
+else
+{
+grade='U';
+cout<<"\nSubject"<<i+1<<":\t"<<result[i];
+cout<<"\nGrade Obtained:"<<grade;
+}
+}
+}
+};
+void main()
+{
+result r[MAX];
+int n,ch,c=1;
+clrscr();
+cout<<"\nEnter the number of students:";
+cin>>n;
+do
+{
+clrscr();
+cout<<"\nEnter your choice\n1.Internal Marks\n2.External Marks\n3.Final Result:\t";
+cin>>ch;
+switch(ch)
+{
+case 1:
+{
+int i;
+for(i=0;i<n;i++)
+{
+r[i].getdata1();
+r[i].getdata2();
+}
+for(i=0;i<n;i++)
+{
+r[i].calculate2();
+}
+for(i=0;i<n;i++)
+{
+r[i].display1();
+r[i].display2();
+}
+break;
+}
+case 2:
+{
+int i;
+for(i=0;i<n;i++)
+{
+r[i].getdata3();
+}
+for(i=0;i<n;i++)
+{
+r[i].calculate3();
+}
+for(i=0;i<n;i++)
+{
+r[i].display1();
+r[i].display3();
+}
+break;
+}
+case 3:
+{
+int i;
+for(i=0;i<n;i++)
+{
+r[i].calculate4();
+}
+for(i=0;i<n;i++)
+{
+r[i].display1();
+r[i].display4();
+}
+break;
+}
+}
+cout<<"\nDo you want to continue(1/0)?";
+cin>>c;
+}while(c==1);
+getch();
+}
